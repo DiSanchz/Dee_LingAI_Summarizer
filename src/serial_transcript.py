@@ -38,8 +38,12 @@ class WhisperTranscriber:
         transcripts at self.target_directory/transcrips.
         """
 
+        transcriber = whisper.load_model(model)
+
         for i in range(len(self.reccordings)):
-            transcript = model.transcribe(self.reccordings[i]["reccording_full_path"])
+            transcript = transcriber.transcribe(
+                self.reccordings[i]["reccording_full_path"]
+            )
 
             with open(
                 f"{self.target_dir}/transcripts/transcript_{self.reccordings[i]['reccording_name']}.txt",

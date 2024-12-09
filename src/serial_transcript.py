@@ -30,10 +30,10 @@ class WhisperTranscriber:
                 reccording_full_path = os.path.join(self.target_dir, filename)
                 reccording_name = filename.split(".")[0]
 
-            self.reccordings[i] = {
-                "reccording_name": reccording_name,
-                "reccording_full_path": reccording_full_path,
-            }
+                self.reccordings[i] = {
+                    "reccording_name": reccording_name,
+                    "reccording_full_path": reccording_full_path,
+                }
 
     def transcribe_audio(self, model="medium.en"):
         """

@@ -21,9 +21,12 @@ class WhisperTranscriber:
         """
         Scan the target directory for audio reccordings.
         """
-        for i in range(len(os.listdir(self.target_dir))):
-            filename = os.listdir(self.target_dir)[i]
-            if filename[-4:] in [".mp3", ".mp4"]:
+        files = os.listdir(self.target_dir)
+        self.reccordings = {}
+
+        for i in range(len(files)):
+            filename = files[i]
+            if filename.endswith((".mp3", ".mp4")):
                 reccording_full_path = os.path.join(self.target_dir, filename)
                 reccording_name = filename.split(".")[0]
 
@@ -43,15 +46,15 @@ class WhisperTranscriber:
         if not os.path.exists(f"{self.target_dir}/transcripts"):
             os.makedirs(f"{self.target_dir}/transcripts")
 
-        for i in range(len(self.reccordings)):
+        for key, value in self.reccordings.items():
             transcript = transcriber.transcribe(
-                self.reccordings[i]["reccording_full_path"]
+                self.reccordings[key]["reccording_full_path"]
             )
 
             with open(
-                f"{self.target_dir}/transcripts/transcript_{self.reccordings[i]['reccording_name']}.txt",
+                f"{self.target_dir}/transcripts/transcript_{self.reccordings[key]['reccording_name']}.txt",
                 "w",
             ) as file:
                 file.write(transcript["text"])
 
-            print(f"Transcript {self.reccordings[i]['reccording_name']}: Ready")
+            print(f"Transcript {self.reccordings[key]['reccording_name']}: Ready")

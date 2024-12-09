@@ -40,6 +40,9 @@ class WhisperTranscriber:
 
         transcriber = whisper.load_model(model)
 
+        if not os.path.exists(f"{self.target_dir}/transcripts"):
+            os.makedirs(f"{self.target_dir}/transcripts")
+
         for i in range(len(self.reccordings)):
             transcript = transcriber.transcribe(
                 self.reccordings[i]["reccording_full_path"]

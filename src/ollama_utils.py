@@ -1,7 +1,7 @@
 from ollama import Client
 
 
-def ollama_chat(system_message, user_input, llm="llama3:8b-instruct-fp16"):
+def ollama_quick_chat(system_message, user_input, llm="llama3:8b-instruct-fp16"):
     """
     Sends a chat request to the Ollama client with the specified user input and system message.
 

@@ -2,14 +2,11 @@ import os
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()
 
-
-class OpenAIAgent:
+class OpenAIVanillaAgent:
     def __init__(self, system_prompt, user_prompt, model="gpt-4o"):
 
         self.client = OpenAI()
-        self.client.set_api_key(os.getenv("OPENAI_API_KEY"))
 
         self.model = model
         self.system_prompt = system_prompt
